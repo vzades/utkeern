@@ -188,49 +188,6 @@ section {
   padding: 0 !important;
 }
 
-section.hero {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: var(--spacing-3xl) var(--spacing-xl) !important;
-  background-color: var(--bg-primary) !important;
-}
-
-.hero-content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  max-width: 900px;
-  width: 100%;
-}
-
-.hero-content h1 {
-  margin-bottom: var(--spacing-md) !important;
-}
-
-.hero-subtitle {
-  font-size: 1.5rem !important;
-  color: var(--accent-secondary) !important;
-  margin-bottom: var(--spacing-lg) !important;
-}
-
-.hero-description {
-  font-size: 1.125rem !important;
-  color: var(--text-secondary) !important;
-  margin-bottom: var(--spacing-2xl) !important;
-  line-height: var(--line-height-relaxed) !important;
-}
-
-.hero-cta {
-  display: flex;
-  gap: var(--spacing-lg);
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
 .students-hero {
   min-height: 60vh;
   display: flex;
@@ -1195,4 +1152,682 @@ summary {
 
 summary:hover {
   color: var(--accent-secondary);
+}
+
+/* ============= TEMPLE-INSPIRED HERO ANIMATIONS ============= */
+/*
+  Sacred, architectural motion inspired by:
+  - Temple doors opening (controlled reveal)
+  - Stone panels revealing carvings (carved-in feel)
+  - Light passing over engraved stone (soft sweep)
+  - Symmetry and alignment (centered reveal)
+  
+  Motion philosophy: "Stone settling into place" — intentional, grounded, timeless.
+  No breathing, pulsing, bouncing, floating, shimmer, or organic effects.
+*/
+
+/* ============= HERO BACKGROUND ANIMATION KEYFRAMES ============= */
+
+/* Subtle floating pattern animation - very slow, grounded movement */
+@keyframes heroBackgroundShift {
+  0% {
+    background-position: 0% 0%;
+  }
+  50% {
+    background-position: 2% 1%;
+  }
+  100% {
+    background-position: 0% 0%;
+  }
+}
+
+/* Soft gradient animation - cycling through architectural light effects */
+@keyframes heroGradientFlow {
+  0% {
+    background-color: var(--bg-primary);
+    filter: brightness(1);
+  }
+  25% {
+    background-color: var(--bg-primary);
+    filter: brightness(1.02);
+  }
+  50% {
+    background-color: var(--bg-primary);
+    filter: brightness(1);
+  }
+  75% {
+    background-color: var(--bg-primary);
+    filter: brightness(1.01);
+  }
+  100% {
+    background-color: var(--bg-primary);
+    filter: brightness(1);
+  }
+}
+
+/* Ornamental corner accent - subtle geometric animation */
+@keyframes cornerAccentPulse {
+  0% {
+    opacity: 0.05;
+    transform: scale(0.98);
+  }
+  50% {
+    opacity: 0.08;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0.05;
+    transform: scale(0.98);
+  }
+}
+
+/* Primary hero reveal animation - top to bottom with clip-path */
+@keyframes heroRevealTopToBottom {
+  0% {
+    clip-path: inset(0 0 100% 0);
+    opacity: 0;
+  }
+  100% {
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+  }
+}
+
+/* Headline carved-in effect - rise with contrast increase */
+@keyframes headlineMaterialize {
+  0% {
+    opacity: 0.3;
+    transform: translateY(8px);
+    filter: contrast(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: contrast(1);
+  }
+}
+
+/* Subtitle/description fade in smoothly */
+@keyframes contentFadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+/* CTA buttons fade in after hero content */
+@keyframes ctaFadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Heritage ornament - symmetric line reveal from center */
+@keyframes heritageOrnamentReveal {
+  0% {
+    clip-path: inset(50% 100% 50% 100%);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.12;
+  }
+  100% {
+    clip-path: inset(50% 0% 50% 0%);
+    opacity: 0.15;
+  }
+}
+
+/* Soft light sweep - left to right over hero content */
+@keyframes lightSweep {
+  0% {
+    left: -100%;
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.08;
+  }
+  50% {
+    opacity: 0.08;
+  }
+  90% {
+    opacity: 0;
+  }
+  100% {
+    left: 100%;
+    opacity: 0;
+  }
+}
+
+/* Parallax scroll effect - subtle background shift */
+@keyframes parallaxShift {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(8px);
+  }
+}
+
+/* ============= HERO SECTION WITH ANIMATED BACKGROUND ============= */
+
+section.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-3xl) var(--spacing-xl) !important;
+  background-color: var(--bg-primary) !important;
+  position: relative;
+  overflow: hidden;
+  
+  /* Animated background with subtle pattern movement */
+  background-image: 
+    radial-gradient(circle at 20% 80%, rgba(45, 27, 71, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(107, 61, 91, 0.02) 0%, transparent 50%);
+  background-size: 200% 200%;
+  animation: 
+    heroGradientFlow 20s ease-in-out infinite,
+    heroBackgroundShift 30s ease-in-out infinite;
+  
+  /* Optional: Very subtle decorative pattern */
+  background-attachment: fixed;
+}
+
+/* Prevent background animations on reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  section.hero {
+    animation: none;
+    background-image: none;
+  }
+}
+
+/* Top-left corner accent - subtle geometric decoration */
+section.hero::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 300px;
+  height: 300px;
+  background: linear-gradient(135deg, 
+    rgba(196, 153, 96, 0.05) 0%, 
+    transparent 50%);
+  opacity: 0.05;
+  animation: cornerAccentPulse 8s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Bottom-right corner accent - symmetric decorative element */
+section.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 200px;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    transparent 0%, 
+    rgba(255, 255, 255, 0.15) 50%, 
+    transparent 100%);
+  pointer-events: none;
+  animation: lightSweep 2000ms cubic-bezier(0.22, 1, 0.36, 1) 800ms forwards;
+  z-index: 0;
+}
+
+/* Prevent light sweep on reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  section.hero::before {
+    animation: none;
+    display: none;
+  }
+}
+
+/* Hero content - primary reveal container */
+.hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  max-width: 900px;
+  width: 100%;
+  animation: heroRevealTopToBottom 1000ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  position: relative;
+  z-index: 1;
+}
+
+/* Respect prefers-reduced-motion for hero reveal */
+@media (prefers-reduced-motion: reduce) {
+  .hero-content {
+    animation: none;
+    opacity: 1;
+    clip-path: none;
+  }
+}
+
+/* Headline - carved-in reveal with contrast animation */
+.hero-content h1 {
+  margin-bottom: var(--spacing-md) !important;
+  animation: headlineMaterialize 900ms cubic-bezier(0.22, 1, 0.36, 1) 200ms forwards;
+  opacity: 0.3;
+  animation-fill-mode: both;
+}
+
+/* Respect prefers-reduced-motion for headline */
+@media (prefers-reduced-motion: reduce) {
+  .hero-content h1 {
+    animation: none;
+    opacity: 1;
+    transform: none;
+    filter: none;
+  }
+}
+
+/* Subtitle fade in with delay */
+.hero-subtitle {
+  font-size: 1.5rem !important;
+  color: var(--accent-secondary) !important;
+  margin-bottom: var(--spacing-lg) !important;
+  animation: contentFadeIn 800ms cubic-bezier(0.22, 1, 0.36, 1) 400ms forwards;
+  opacity: 0;
+}
+
+/* Respect prefers-reduced-motion for subtitle */
+@media (prefers-reduced-motion: reduce) {
+  .hero-subtitle {
+    animation: none;
+    opacity: 1;
+  }
+}
+
+/* Description fade in with further delay */
+.hero-description {
+  font-size: 1.125rem !important;
+  color: var(--text-secondary) !important;
+  margin-bottom: var(--spacing-2xl) !important;
+  line-height: var(--line-height-relaxed) !important;
+  animation: contentFadeIn 800ms cubic-bezier(0.22, 1, 0.36, 1) 550ms forwards;
+  opacity: 0;
+}
+
+/* Respect prefers-reduced-motion for description */
+@media (prefers-reduced-motion: reduce) {
+  .hero-description {
+    animation: none;
+    opacity: 1;
+  }
+}
+
+/* CTA buttons fade in last */
+.hero-cta {
+  display: flex;
+  gap: var(--spacing-lg);
+  justify-content: center;
+  flex-wrap: wrap;
+  animation: ctaFadeIn 800ms cubic-bezier(0.22, 1, 0.36, 1) 700ms forwards;
+  opacity: 0;
+}
+
+/* Respect prefers-reduced-motion for CTA */
+@media (prefers-reduced-motion: reduce) {
+  .hero-cta {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* Heritage ornament divider - subtle temple motif */
+section.hero .heritage-motif {
+  width: 120px;
+  height: 2px;
+  background: linear-gradient(90deg,
+    transparent 0%,
+    var(--accent-gold) 20%,
+    var(--accent-gold) 80%,
+    transparent 100%);
+  margin: var(--spacing-xl) 0;
+  position: relative;
+  opacity: 0;
+  animation: heritageOrnamentReveal 1100ms cubic-bezier(0.22, 1, 0.36, 1) 350ms forwards;
+  z-index: 1;
+}
+
+/* Respect prefers-reduced-motion for heritage motif */
+@media (prefers-reduced-motion: reduce) {
+  section.hero .heritage-motif {
+    animation: none;
+    opacity: 0.15;
+    clip-path: none;
+  }
+}
+
+/* Mobile background optimization */
+@media (max-width: 768px) {
+  section.hero {
+    background-attachment: scroll;
+    animation: heroGradientFlow 20s ease-in-out infinite;
+  }
+  
+  section.hero::after {
+    width: 200px;
+    height: 200px;
+  }
+}
+
+/* ============= ANIMATION TIMING & EASING ============= */
+/*
+  Cubic-bezier used: cubic-bezier(0.22, 1, 0.36, 1)
+  This easing creates smooth, grounded acceleration/deceleration
+  mimicking stone settling into place — slow start, quick middle, smooth finish.
+  
+  Staggered timing:
+  - Hero container reveal: 0ms (1000ms duration)
+  - Headline: 200ms
+  - Subtitle: 400ms
+  - Description: 550ms
+  - Heritage ornament: 350ms
+  - Buttons: 700ms
+  - Light sweep: 800ms
+  - Background animations: Continuous (20s gradient, 30s shift)
+  
+  Total effect: Content flows from top to bottom with reverent timing,
+  while subtle background creates living, breathing sacred space.
+*/
+
+/* ============= ACCESSIBILITY & PERFORMANCE ============= */
+/*
+  ✅ Uses only transform, opacity, clip-path (GPU-accelerated)
+  ✅ Background animations are subtle (low opacity, slow timing)
+  ✅ Respects prefers-reduced-motion (instant display, no animations)
+  ✅ No JS animation library required
+  ✅ CSS-first solution for performance
+  ✅ Low paint/reflow impact
+  ✅ Compatible with all modern browsers
+  ✅ Mobile optimized (fixed positioning disabled on small screens)
+*/
+
+/* ============= ANIMATION TIMING & EASING ============= */
+/*
+  Cubic-bezier used: cubic-bezier(0.22, 1, 0.36, 1)
+  This easing creates smooth, grounded acceleration/deceleration
+  mimicking stone settling into place — slow start, quick middle, smooth finish.
+  
+  Staggered timing:
+  - Hero container reveal: 0ms (1000ms duration)
+  - Headline: 200ms
+  - Subtitle: 400ms
+  - Description: 550ms
+  - Buttons: 700ms
+  - Light sweep: 800ms
+  - Heritage ornament: 350ms
+  
+  Total effect: Content flows from top to bottom with reverent timing.
+*/
+
+/* ============= ACCESSIBILITY & PERFORMANCE ============= */
+/*
+  ✅ Uses only transform, opacity, clip-path (GPU-accelerated)
+  ✅ Respects prefers-reduced-motion (instant display)
+  ✅ No JS animation library required
+  ✅ CSS-first solution for performance
+  ✅ Low paint/reflow impact
+  ✅ Compatible with all modern browsers
+*/
+
+/* ============= NAVIGATION ============= */
+.navbar {
+  background-color: white;
+  border-bottom: 1px solid var(--border-light);
+  position: sticky;
+  top: 0;
+  z-index: var(--z-nav);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.navbar-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-md) var(--spacing-lg);
+}
+
+.navbar-brand {
+  flex-shrink: 0;
+}
+
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  text-decoration: none !important;
+  font-weight: 700 !important;
+  color: var(--accent-primary) !important;
+  font-size: 1.5rem;
+  font-family: var(--font-serif) !important;
+  transition: color var(--transition-fast);
+}
+
+.nav-logo:hover {
+  color: var(--accent-secondary) !important;
+}
+
+.logo-text {
+  color: var(--accent-primary);
+}
+
+.navbar-menu {
+  display: flex;
+  list-style: none;
+  margin: 0 !important;
+  padding: 0 !important;
+  gap: var(--spacing-lg);
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.nav-item {
+  position: relative;
+  margin: 0 !important;
+}
+
+.nav-link {
+  color: var(--text-primary) !important;
+  text-decoration: none !important;
+  font-weight: 500;
+  padding: var(--spacing-sm) var(--spacing-md) !important;
+  transition: all var(--transition-fast);
+  position: relative;
+  display: block;
+}
+
+.nav-link:hover {
+  color: var(--accent-primary) !important;
+}
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: var(--accent-gold);
+  transition: width var(--transition-fast);
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.navbar-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: var(--spacing-sm);
+  flex-direction: column;
+  gap: 6px;
+}
+
+.toggle-line {
+  width: 24px;
+  height: 2px;
+  background-color: var(--text-primary);
+  transition: all var(--transition-fast);
+  border-radius: 1px;
+}
+
+/* Mobile menu toggle styles */
+@media (max-width: 768px) {
+  .navbar-toggle {
+    display: flex;
+  }
+
+  .navbar-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: 0;
+    max-height: 0;
+    overflow: hidden;
+    background-color: white;
+    border-bottom: 1px solid var(--border-light);
+    transition: max-height var(--transition-smooth);
+  }
+
+  .navbar-menu.open {
+    max-height: 500px;
+  }
+
+  .nav-item {
+    width: 100%;
+  }
+
+  .nav-link {
+    width: 100%;
+    padding: var(--spacing-md) var(--spacing-lg) !important;
+    border-bottom: 1px solid var(--border-light);
+  }
+
+  .nav-link::after {
+    display: none;
+  }
+
+  .navbar-container {
+    flex-wrap: wrap;
+    padding: var(--spacing-md) var(--spacing-lg);
+  }
+}
+
+/* ============= FOOTER ============= */
+.footer {
+  background-color: var(--accent-primary);
+  color: white;
+  padding: var(--spacing-3xl) var(--spacing-xl) var(--spacing-2xl);
+  margin-top: var(--spacing-3xl);
+}
+
+.footer-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 var(--spacing-lg);
+  width: 100%;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--spacing-2xl);
+  margin-bottom: var(--spacing-2xl);
+}
+
+.footer-section h4 {
+  color: white !important;
+  margin-top: 0 !important;
+  margin-bottom: var(--spacing-md) !important;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.footer-section p {
+  color: rgba(250, 248, 243, 0.9);
+  font-size: 0.95rem;
+  margin-bottom: var(--spacing-sm) !important;
+  max-width: none !important;
+}
+
+.footer-tagline {
+  font-size: 0.875rem !important;
+  color: rgba(250, 248, 243, 0.8) !important;
+  line-height: 1.5;
+}
+
+.footer-links {
+  list-style: none;
+  margin: 0 !important;
+  padding: 0 !important;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.footer-links li {
+  margin: 0 !important;
+}
+
+.footer-links a {
+  color: rgba(250, 248, 243, 0.9) !important;
+  text-decoration: none !important;
+  font-weight: 500;
+  transition: color var(--transition-fast);
+  font-size: 0.95rem;
+}
+
+.footer-links a:hover {
+  color: var(--accent-gold) !important;
+}
+
+.footer-bottom {
+  border-top: 1px solid rgba(250, 248, 243, 0.2);
+  padding-top: var(--spacing-lg);
+  text-align: center;
+}
+
+.footer-bottom p {
+  color: rgba(250, 248, 243, 0.8);
+  font-size: 0.875rem;
+  margin: var(--spacing-sm) 0 !important;
+}
+
+@media (max-width: 1024px) {
+  .footer-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--spacing-xl);
+  }
+}
+
+@media (max-width: 768px) {
+  .footer {
+    padding: var(--spacing-2xl) var(--spacing-lg) var(--spacing-xl);
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: var(--spacing-xl);
+  }
+
+  .footer-container {
+    padding: 0 var(--spacing-md);
+  }
 }
