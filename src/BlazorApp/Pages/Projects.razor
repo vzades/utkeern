@@ -1,0 +1,113 @@
+@page "/projects"
+@using System.Collections.Generic
+
+<PageTitle>Projects - Utkeern</PageTitle>
+
+<section class="projects-hero">
+    <div class="projects-hero-content">
+        <h1>Projects</h1>
+        <p>Exploring heritage preservation through research, documentation, and creative projects</p>
+    </div>
+</section>
+
+<section class="content">
+    <div class="container">
+        <SectionHeader Title="Recent Projects" />
+
+        <div class="projects-list">
+            <article class="project-case-study">
+                <div class="project-image">
+                    <img src="images/design-desk.jpeg" alt="Heritage Documentation Project" />
+                </div>
+                <div class="project-content">
+                    <h2>Heritage Documentation Initiative</h2>
+                    <p class="project-meta">2024 • Research & Documentation</p>
+                    <p>
+                        A comprehensive digital documentation of lesser-known Indian heritage sites. This project focuses on 
+                        creating high-resolution archives of architectural details, sculptural work, and structural elements 
+                        that represent centuries of Indian craftsmanship.
+                    </p>
+                    <ul>
+                        <li>Photographed 50+ heritage sites across India</li>
+                        <li>Created detailed architectural documentation</li>
+                        <li>Developed educational resources for students</li>
+                        <li>Open-sourced images under Creative Commons</li>
+                    </ul>
+                    <a href="#" class="btn btn-primary">View Project</a>
+                </div>
+            </article>
+
+            <article class="project-case-study reverse">
+                <div class="project-image">
+                    <img src="images/design-desk.jpeg" alt="Digital Archive Project" />
+                </div>
+                <div class="project-content">
+                    <h2>Indian Heritage Digital Archive</h2>
+                    <p class="project-meta">2023 • Technology & Archives</p>
+                    <p>
+                        Building an accessible digital platform for preserving Indian cultural knowledge. This project aims to 
+                        make heritage resources available to students, researchers, and cultural enthusiasts worldwide, while 
+                        ensuring proper attribution and educational usage.
+                    </p>
+                    <ul>
+                        <li>Database of 2000+ images and documents</li>
+                        <li>Multi-language interface for global access</li>
+                        <li>Advanced search and categorization system</li>
+                        <li>Community contribution guidelines</li>
+                    </ul>
+                    <a href="#" class="btn btn-primary">View Project</a>
+                </div>
+            </article>
+
+            <article class="project-case-study">
+                <div class="project-image">
+                    <img src="images/design-desk.jpeg" alt="Educational Series Project" />
+                </div>
+                <div class="project-content">
+                    <h2>Heritage in Context Series</h2>
+                    <p class="project-meta">2023 • Educational Content</p>
+                    <p>
+                        A visual storytelling series that contextualizes heritage within historical, cultural, and spiritual 
+                        frameworks. Each project explores a specific theme to help learners understand the depth and significance 
+                        of Indian cultural traditions.
+                    </p>
+                    <ul>
+                        <li>12-part documentary series</li>
+                        <li>Interactive timeline visualizations</li>
+                        <li>Scholar interviews and insights</li>
+                        <li>Downloadable educational materials</li>
+                    </ul>
+                    <a href="#" class="btn btn-primary">View Project</a>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>
+
+<section class="content alt">
+    <div class="container">
+        <SectionHeader Title="Collaborations & Partnerships" />
+        
+        <p class="intro-text">
+            Working with cultural institutions, universities, and heritage organizations to expand the reach and impact 
+            of heritage preservation efforts.
+        </p>
+
+        <div class="grid-3">
+            <CollaborationCard 
+                Organization="Indian Heritage Foundation" 
+                Description="Collaboration on digital archiving and heritage documentation standards" />
+            
+            <CollaborationCard 
+                Organization="University Research Initiative" 
+                Description="Academic partnerships for heritage studies and cultural research" />
+            
+            <CollaborationCard 
+                Organization="Global Heritage Alliance" 
+                Description="International cooperation on heritage preservation and knowledge exchange" />
+        </div>
+    </div>
+</section>
+
+@code {
+}

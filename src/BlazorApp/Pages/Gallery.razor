@@ -1,0 +1,152 @@
+@page "/gallery"
+@using System.Collections.Generic
+@using System.Linq
+
+<PageTitle>Heritage Gallery - Utkeern</PageTitle>
+
+<section class="gallery-hero">
+    <div class="gallery-hero-content">
+        <h1>Heritage Gallery</h1>
+        <p>A curated collection of Indian architectural marvels, sacred spaces, and cultural landmarks</p>
+    </div>
+</section>
+
+<section class="content">
+    <div class="container">
+        <div class="gallery-header">
+            <SectionHeader Title="Browse Collection" />
+            
+            <div class="filter-section">
+                <h4>Filter by Category</h4>
+                <div class="filter-buttons">
+                    <button class="filter-btn @(selectedCategory == "all" ? "active" : "")" 
+                            @onclick="@((MouseEventArgs e) => FilterByCategory("all"))">
+                        All
+                    </button>
+                    <button class="filter-btn @(selectedCategory == "architecture" ? "active" : "")" 
+                            @onclick="@((MouseEventArgs e) => FilterByCategory("architecture"))">
+                        Architecture
+                    </button>
+                    <button class="filter-btn @(selectedCategory == "art" ? "active" : "")" 
+                            @onclick="@((MouseEventArgs e) => FilterByCategory("art"))">
+                        Art & Sculpture
+                    </button>
+                    <button class="filter-btn @(selectedCategory == "manuscripts" ? "active" : "")" 
+                            @onclick="@((MouseEventArgs e) => FilterByCategory("manuscripts"))">
+                        Manuscripts
+                    </button>
+                    <button class="filter-btn @(selectedCategory == "instruments" ? "active" : "")" 
+                            @onclick="@((MouseEventArgs e) => FilterByCategory("instruments"))">
+                        Instruments
+                    </button>
+                    <button class="filter-btn @(selectedCategory == "rituals" ? "active" : "")" 
+                            @onclick="@((MouseEventArgs e) => FilterByCategory("rituals"))">
+                        Rituals
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="gallery-grid">
+            @foreach (var image in filteredImages)
+            {
+                <ImageCard 
+                    Title="@image.Title" 
+                    Description="@image.Description" 
+                    Category="@image.Category"
+                    ImageUrl="@image.ImageUrl" />
+            }
+        </div>
+
+        @if (!filteredImages.Any())
+        {
+            <div class="empty-state">
+                <p>No images found in this category. Please try a different filter.</p>
+            </div>
+        }
+    </div>
+</section>
+
+@code {
+    private string selectedCategory = "all";
+    private List<HeritageImage> images = new();
+    private List<HeritageImage> filteredImages = new();
+
+    protected override void OnInitialized()
+    {
+        // Sample data - In production, this would come from an API or JSON file
+        images = new List<HeritageImage>
+        {
+            new HeritageImage 
+            { 
+                Title = "Taj Mahal", 
+                Description = "A symbol of eternal love, built by Emperor Shah Jahan",
+                Category = "architecture",
+                ImageUrl = "images/design-desk.jpeg"
+            },
+            new HeritageImage 
+            { 
+                Title = "Classical Sculpture", 
+                Description = "Ancient Indian sculptural mastery",
+                Category = "art",
+                ImageUrl = "images/design-desk.jpeg"
+            },
+            new HeritageImage 
+            { 
+                Title = "Sanskrit Manuscript", 
+                Description = "Ancient Sanskrit texts preserved through centuries",
+                Category = "manuscripts",
+                ImageUrl = "images/design-desk.jpeg"
+            },
+            new HeritageImage 
+            { 
+                Title = "Sitar", 
+                Description = "Traditional Indian stringed instrument",
+                Category = "instruments",
+                ImageUrl = "images/design-desk.jpeg"
+            },
+            new HeritageImage 
+            { 
+                Title = "Temple Ritual", 
+                Description = "Sacred ceremonies and spiritual traditions",
+                Category = "rituals",
+                ImageUrl = "images/design-desk.jpeg"
+            },
+            new HeritageImage 
+            { 
+                Title = "Varanasi Temples", 
+                Description = "Spiritual heart of Hindu pilgrimage",
+                Category = "architecture",
+                ImageUrl = "images/design-desk.jpeg"
+            }
+        };
+
+        ApplyFilter();
+    }
+
+    private void FilterByCategory(string category)
+    {
+        selectedCategory = category;
+        ApplyFilter();
+    }
+
+    private void ApplyFilter()
+    {
+        if (selectedCategory == "all")
+        {
+            filteredImages = images;
+        }
+        else
+        {
+            filteredImages = images.Where(i => i.Category == selectedCategory).ToList();
+        }
+    }
+
+    public class HeritageImage
+    {
+        public string Title { get; set; } = string.Empty;
+        public string Description { get; set; } = string.Empty;
+        public string Category { get; set; } = string.Empty;
+        public string ImageUrl { get; set; } = string.Empty;
+    }
+}

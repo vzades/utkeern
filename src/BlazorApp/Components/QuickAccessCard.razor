@@ -1,0 +1,15 @@
+<NavLink href="@Link" class="quick-access-card">
+    <div class="quick-icon">@Icon</div>
+    <h4>@Title</h4>
+</NavLink>
+
+@code {
+    [Parameter]
+    public string Title { get; set; } = string.Empty;
+
+    [Parameter]
+    public string Icon { get; set; } = string.Empty;
+
+    [Parameter]
+    public string Link { get; set; } = string.Empty;
+}

@@ -12,10 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Components\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Content Update="wwwroot\images\komal.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

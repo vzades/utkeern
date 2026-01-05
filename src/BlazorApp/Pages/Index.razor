@@ -1,0 +1,80 @@
+@page "/"
+
+<PageTitle>Home - Utkeern</PageTitle>
+
+<section class="hero">
+    <div class="hero-content">
+        <h1>Utkeern</h1>
+        <p class="hero-subtitle">Preserving the Legacy of Indian Heritage</p>
+        <p class="hero-description">
+            A visual archive celebrating the depth, beauty, and timelessness of Indian architecture, art, manuscripts, 
+            instruments, and rituals. Exploring knowledge, culture, and craftsmanship through images and storytelling.
+        </p>
+        
+        <div class="hero-cta">
+            <NavLink href="gallery" class="btn btn-primary">Explore Gallery</NavLink>
+            <NavLink href="about" class="btn btn-secondary">Learn More</NavLink>
+        </div>
+    </div>
+</section>
+
+<section class="content alt">
+    <div class="container-sm">
+        <SectionHeader Title="What You'll Find Here" />
+        
+        <div class="grid-3">
+            <FeatureCard 
+                Icon="🏛️" 
+                Title="Heritage Gallery" 
+                Description="Curated collection of Indian architectural marvels, sacred spaces, and cultural landmarks." />
+            
+            <FeatureCard 
+                Icon="📚" 
+                Title="Research & Articles" 
+                Description="In-depth exploration of Indian art history, philosophy, and cultural traditions." />
+            
+            <FeatureCard 
+                Icon="🎓" 
+                Title="Educational Resources" 
+                Description="Student-friendly guidelines for using heritage images in academic and creative work." />
+        </div>
+    </div>
+</section>
+
+<div class="heritage-divider"></div>
+
+<section class="content">
+    <div class="container-sm">
+        <SectionHeader Title="Featured Collections" />
+        
+        <div class="grid-2">
+            <div>
+                <h3>Architecture</h3>
+                <p>
+                    From ancient temples to medieval forts, explore the architectural evolution of Indian civilization. 
+                    Each structure tells a story of craftsmanship, innovation, and cultural values.
+                </p>
+                <NavLink href="gallery" class="btn btn-text">View Collection →</NavLink>
+            </div>
+            <div class="image-wrapper">
+                <img src="images/design-desk.jpeg" alt="Architectural heritage" />
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="content alt">
+    <div class="container">
+        <SectionHeader Title="Quick Access" />
+        
+        <div class="grid-4">
+            <QuickAccessCard Title="Gallery" Icon="🖼️" Link="gallery" />
+            <QuickAccessCard Title="Projects" Icon="💼" Link="projects" />
+            <QuickAccessCard Title="Research" Icon="📖" Link="research" />
+            <QuickAccessCard Title="About" Icon="👤" Link="about" />
+        </div>
+    </div>
+</section>
+
+@code {
+}
