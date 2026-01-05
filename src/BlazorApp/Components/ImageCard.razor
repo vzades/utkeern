@@ -1,0 +1,24 @@
+<div class="card image-card">
+    <div class="image-card-image">
+        <img src="@ImageUrl" alt="@Title" />
+    </div>
+    <div class="image-card-content">
+        <h4>@Title</h4>
+        <p class="image-card-category">@Category</p>
+        <p>@Description</p>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public string Title { get; set; } = string.Empty;
+
+    [Parameter]
+    public string Description { get; set; } = string.Empty;
+
+    [Parameter]
+    public string Category { get; set; } = string.Empty;
+
+    [Parameter]
+    public string ImageUrl { get; set; } = string.Empty;
+}
