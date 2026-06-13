@@ -881,27 +881,90 @@ section.content.alt {
 }
 
 .image-card {
+  position: relative;
+  overflow: hidden;
   height: 100%;
   padding: 0;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  box-shadow: var(--shadow-md);
+  transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition);
+}
+
+.image-card:hover {
+  border-color: rgba(201, 162, 39, 0.72);
+  box-shadow: var(--shadow-lg);
+  transform: translateY(-6px);
+}
+
+.image-card-link {
+  display: block;
+  color: inherit;
+}
+
+.image-card-link:focus-visible {
+  outline-offset: -5px;
 }
 
 .image-card-image {
-  height: 265px;
+  position: relative;
+  height: 420px;
   overflow: hidden;
   background: var(--surface-muted);
 }
 
-.image-card-content {
-  padding: 1.5rem;
+.image-card-image::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+  pointer-events: none;
+  background: linear-gradient(180deg, transparent 38%, rgba(23, 18, 13, 0.24) 58%, rgba(23, 18, 13, 0.94) 100%);
+  transition: opacity var(--transition);
 }
 
-.image-card-content h4 {
-  margin-bottom: 0.65rem;
-  color: var(--primary-dark);
+.image-card-overlay {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  padding: clamp(1.4rem, 4vw, 2.1rem);
+  transform: translateY(3px);
+  transition: transform var(--transition);
 }
 
-.image-card-content p:last-child {
+.image-card-overlay h3 {
+  margin-bottom: 0.45rem;
+  color: var(--ink-on-dark);
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  letter-spacing: -0.02em;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.45);
+}
+
+.image-card-overlay p {
+  max-width: 48ch;
   margin-bottom: 0;
+  color: rgba(255, 250, 240, 0.83);
+  font-family: var(--font-serif);
+  font-size: 0.94rem;
+  line-height: 1.55;
+}
+
+.image-card:hover .image-card-overlay {
+  transform: none;
+}
+
+.image-card-metadata {
+  display: flex;
+  min-height: 68px;
+  align-items: center;
+  padding: 1rem 1.35rem;
+  color: var(--muted);
+  border-top: 1px solid rgba(216, 209, 194, 0.8);
+  background: var(--surface);
+  font-size: 0.75rem;
+  font-weight: 600;
 }
 
 .image-card-category,
@@ -917,7 +980,7 @@ section.content.alt {
 }
 
 .image-card-large .image-card-image {
-  height: 380px;
+  height: clamp(390px, 42vw, 520px);
 }
 
 /* Homepage featured collection */
@@ -1016,6 +1079,42 @@ section.content.alt {
   font-size: 0.86rem;
 }
 
+.gallery-search {
+  position: relative;
+  display: block;
+  margin-bottom: 1rem;
+}
+
+.gallery-search-icon {
+  position: absolute;
+  top: 50%;
+  left: 1rem;
+  width: 18px;
+  height: 18px;
+  color: var(--primary);
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.gallery-search input {
+  width: 100%;
+  min-height: 48px;
+  padding: 0.75rem 1rem 0.75rem 2.8rem;
+  color: var(--heading);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  outline: 0;
+  background: var(--background);
+  font: 500 0.9rem/1.4 var(--font-sans);
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
+}
+
+.gallery-search input:focus {
+  border-color: var(--secondary-dark);
+  background: var(--surface);
+  box-shadow: 0 0 0 4px rgba(201, 162, 39, 0.14);
+}
+
 .filter-buttons {
   display: flex;
   flex-wrap: wrap;
@@ -1062,7 +1161,9 @@ section.content.alt {
 
 .gallery-stats {
   display: flex;
+  align-items: center;
   justify-content: flex-end;
+  gap: 1rem;
   margin: 1.5rem 0;
 }
 
@@ -1086,10 +1187,82 @@ section.content.alt {
   font-size: 0.78rem;
 }
 
+.gallery-page-status {
+  color: var(--muted);
+  font: 600 0.76rem/1.2 var(--font-sans);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1.6rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1.5rem, 3vw, 2.25rem);
+}
+
+.gallery-grid .image-card {
+  animation: galleryItemIn 600ms var(--ease) both;
+}
+
+.gallery-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-top: clamp(2.5rem, 5vw, 4rem);
+}
+
+.pagination-pages {
+  display: flex;
+  gap: 0.45rem;
+}
+
+.pagination-control,
+.pagination-page {
+  min-height: 42px;
+  color: var(--primary-dark);
+  border: 1px solid var(--border-strong);
+  background: var(--surface);
+  font: 700 0.8rem/1 var(--font-sans);
+  cursor: pointer;
+  transition: color var(--transition-fast), border-color var(--transition-fast), background var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.pagination-control {
+  padding: 0.75rem 1rem;
+  border-radius: 999px;
+}
+
+.pagination-page {
+  width: 42px;
+  padding: 0;
+  border-radius: 50%;
+}
+
+.pagination-control:hover:not(:disabled),
+.pagination-page:hover,
+.pagination-page.active {
+  color: #fff;
+  border-color: var(--primary);
+  background: var(--primary);
+  box-shadow: 0 7px 16px rgba(140, 59, 42, 0.17);
+  transform: translateY(-2px);
+}
+
+.pagination-control:disabled {
+  cursor: not-allowed;
+  opacity: 0.42;
+}
+
+.inline-reset {
+  padding: 0;
+  color: var(--primary);
+  border: 0;
+  border-bottom: 1px solid currentColor;
+  background: transparent;
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
 }
 
 .empty-state {
@@ -1591,6 +1764,17 @@ section.content.alt {
   }
 }
 
+@keyframes galleryItemIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 /* Blazor framework states */
 #blazor-error-ui {
   position: fixed;
@@ -1768,6 +1952,10 @@ section.content.alt {
   .gallery-grid {
     grid-template-columns: 1fr;
   }
+
+  .image-card-large .image-card-image {
+    height: clamp(360px, 82vw, 500px);
+  }
 }
 
 @media (max-width: 520px) {
@@ -1815,6 +2003,20 @@ section.content.alt {
 
   .filter-btn {
     width: 100%;
+  }
+
+  .gallery-stats {
+    align-items: flex-end;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .gallery-pagination {
+    gap: 0.5rem;
+  }
+
+  .pagination-control {
+    padding-inline: 0.75rem;
   }
 
   .rule {
