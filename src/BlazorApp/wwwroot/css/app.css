@@ -42,14 +42,18 @@
 
 html {
   min-width: 320px;
+  max-width: 100%;
+  overflow-x: hidden;
   scroll-behavior: smooth;
   scroll-padding-top: calc(var(--nav-height) + 1rem);
 }
 
 body {
   min-width: 320px;
+  max-width: 100%;
   min-height: 100vh;
   margin: 0;
+  overflow-x: hidden;
   color: var(--body);
   background:
     radial-gradient(circle at 12% 8%, rgba(201, 162, 39, 0.07), transparent 24rem),
@@ -76,6 +80,12 @@ body::before {
 #app,
 #main {
   min-height: 100vh;
+}
+
+#app {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
 }
 
 #main {
@@ -1647,6 +1657,7 @@ section.content.alt {
 /* Footer */
 .footer {
   position: relative;
+  width: 100%;
   overflow: hidden;
   padding: clamp(4rem, 8vw, 6.5rem) 0 2rem;
   color: rgba(255, 250, 240, 0.82);
@@ -1705,6 +1716,7 @@ section.content.alt {
   position: relative;
   color: rgba(255, 250, 240, 0.76);
   font-size: 0.9rem;
+  overflow-wrap: anywhere;
 }
 
 .footer-links a:hover {
@@ -1851,6 +1863,7 @@ section.content.alt {
 
   .navbar-container {
     position: relative;
+    padding-inline: 1rem;
   }
 
   .navbar-toggle {
@@ -1860,8 +1873,8 @@ section.content.alt {
   .navbar-menu {
     position: absolute;
     top: calc(100% + 1px);
-    right: 1.25rem;
-    left: 1.25rem;
+    right: 0;
+    left: 0;
     display: grid;
     max-height: 0;
     gap: 0;
@@ -1875,15 +1888,23 @@ section.content.alt {
   }
 
   .navbar-menu.open {
-    max-height: 520px;
+    max-height: min(420px, calc(100svh - var(--nav-height)));
     border-color: var(--border);
     opacity: 1;
+    overflow-y: auto;
   }
 
   .nav-link {
-    padding: 0.9rem 1.1rem;
+    display: flex;
+    width: 100%;
+    min-height: 54px;
+    padding: 0.75rem 1.1rem;
     border-bottom: 1px solid rgba(216, 209, 194, 0.65);
     font-size: 0.92rem;
+  }
+
+  .nav-item:last-child .nav-link {
+    border-bottom: 0;
   }
 
   .nav-link::after {
@@ -1953,6 +1974,16 @@ section.content.alt {
     grid-template-columns: 1fr;
   }
 
+  .footer {
+    padding: 3.5rem 0 1.5rem;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr;
+    gap: 2.25rem;
+    padding-bottom: 2.5rem;
+  }
+
   .image-card-large .image-card-image {
     height: clamp(360px, 82vw, 500px);
   }
@@ -1968,11 +1999,6 @@ section.content.alt {
     padding-inline: 1rem;
   }
 
-  .navbar-menu {
-    right: 1rem;
-    left: 1rem;
-  }
-
   .logo-text {
     font-size: 1.45rem;
   }
@@ -1983,6 +2009,55 @@ section.content.alt {
   .facts-grid,
   .footer-grid {
     grid-template-columns: 1fr;
+  }
+
+  section.content {
+    padding-block: clamp(3rem, 12vw, 4rem);
+  }
+
+  .grid-4 {
+    gap: 0.9rem;
+  }
+
+  .quick-access-card {
+    display: grid;
+    min-height: 104px;
+    grid-template-columns: 52px minmax(0, 1fr);
+    justify-content: stretch;
+    gap: 1rem;
+    padding: 1rem 1.15rem;
+    text-align: left;
+  }
+
+  .quick-access-card .quick-icon {
+    width: 52px;
+    height: 52px;
+    margin: 0;
+  }
+
+  .quick-access-card h4 {
+    font-size: 1.3rem;
+  }
+
+  .footer {
+    padding-top: 3rem;
+  }
+
+  .footer-container {
+    width: 100%;
+  }
+
+  .footer-grid {
+    gap: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  .footer-section h4 {
+    margin-bottom: 0.75rem;
+  }
+
+  .footer-section p {
+    margin-bottom: 0.85rem;
   }
 
   .hero-cta,
