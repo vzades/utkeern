@@ -1,6 +1,7 @@
 @page "/gallery"
 @using System.Collections.Generic
 @using System.Linq
+@inject HttpClient Http
 
 <PageTitle>Heritage Gallery - Utkeern</PageTitle>
 
@@ -27,41 +28,55 @@
             <div class="filter-section">
                 <div class="filter-labels">
                     <h4>Filter by Category</h4>
-                    <p class="filter-help">Click a category to view related heritage items</p>
+                    <p class="filter-help">Search the archive or select a collection</p>
                 </div>
+                <label class="gallery-search">
+                    <span class="visually-hidden">Search the heritage gallery</span>
+                    <AppIcon Name="search" CssClass="gallery-search-icon" />
+                    <input type="search"
+                           placeholder="Search by title, subtitle, or category"
+                           @bind="SearchTerm"
+                           @bind:event="oninput" />
+                </label>
                 <div class="filter-buttons">
                     <button class="filter-btn @(selectedCategory == "all" ? "active" : "")" 
                             @onclick="@((MouseEventArgs e) => FilterByCategory("all"))"
+                            aria-pressed="@(selectedCategory == "all")"
                             title="View all heritage items">
                         <AppIcon Name="archive" CssClass="filter-icon" />
                         All Collections
                     </button>
                     <button class="filter-btn @(selectedCategory == "architecture" ? "active" : "")" 
                             @onclick="@((MouseEventArgs e) => FilterByCategory("architecture"))"
+                            aria-pressed="@(selectedCategory == "architecture")"
                             title="View architectural heritage">
                         <AppIcon Name="landmark" CssClass="filter-icon" />
                         Architecture
                     </button>
                     <button class="filter-btn @(selectedCategory == "art" ? "active" : "")" 
                             @onclick="@((MouseEventArgs e) => FilterByCategory("art"))"
+                            aria-pressed="@(selectedCategory == "art")"
                             title="View art and sculpture">
                         <AppIcon Name="palette" CssClass="filter-icon" />
                         Art & Sculpture
                     </button>
                     <button class="filter-btn @(selectedCategory == "manuscripts" ? "active" : "")" 
                             @onclick="@((MouseEventArgs e) => FilterByCategory("manuscripts"))"
+                            aria-pressed="@(selectedCategory == "manuscripts")"
                             title="View manuscripts">
                         <AppIcon Name="scroll-text" CssClass="filter-icon" />
                         Manuscripts
                     </button>
                     <button class="filter-btn @(selectedCategory == "instruments" ? "active" : "")" 
                             @onclick="@((MouseEventArgs e) => FilterByCategory("instruments"))"
+                            aria-pressed="@(selectedCategory == "instruments")"
                             title="View musical instruments">
                         <AppIcon Name="music" CssClass="filter-icon" />
                         Instruments
                     </button>
                     <button class="filter-btn @(selectedCategory == "rituals" ? "active" : "")" 
                             @onclick="@((MouseEventArgs e) => FilterByCategory("rituals"))"
+                            aria-pressed="@(selectedCategory == "rituals")"
                             title="View rituals and traditions">
                         <AppIcon Name="sparkles" CssClass="filter-icon" />
                         Rituals
@@ -73,20 +88,60 @@
         <div class="gallery-stats">
             <span class="stat-item">
                 <span class="stat-number">@filteredImages.Count</span>
-                <span class="stat-label">@(filteredImages.Count == 1 ? "Item" : "Items") shown</span>
+                <span class="stat-label">@(filteredImages.Count == 1 ? "Archive item" : "Archive items")</span>
             </span>
-        </div>
-
-        <div class="gallery-grid">
-            @foreach (var image in filteredImages)
+            @if (filteredImages.Any())
             {
-                <ImageCard 
-                    Title="@image.Title" 
-                    Description="@image.Description" 
-                    Category="@image.Category"
-                    ImageUrl="@image.ImageUrl" />
+                <span class="gallery-page-status">Page @currentPage of @TotalPages</span>
             }
         </div>
+
+        @if (filteredImages.Any())
+        {
+            <div class="gallery-grid" aria-live="polite">
+            @foreach (var image in PagedImages)
+            {
+                <ImageCard 
+                    @key="image.Id"
+                    Title="@image.Title" 
+                    SubTitle="@image.SubTitle"
+                    Category="@GetCategoryLabel(image.Category)"
+                    ImageUrl="@image.ImageUrl"
+                    FullImageUrl="@image.FullImageUrl"
+                    LargeVariant="true" />
+            }
+            </div>
+
+            @if (TotalPages > 1)
+            {
+                <nav class="gallery-pagination" aria-label="Gallery pagination">
+                    <button class="pagination-control"
+                            @onclick="PreviousPage"
+                            disabled="@(currentPage == 1)"
+                            aria-label="Go to previous gallery page">
+                        Previous
+                    </button>
+                    <div class="pagination-pages">
+                        @for (var page = 1; page <= TotalPages; page++)
+                        {
+                            var pageNumber = page;
+                            <button class="pagination-page @(currentPage == pageNumber ? "active" : "")"
+                                    @onclick="@(() => GoToPage(pageNumber))"
+                                    aria-label="Go to gallery page @pageNumber"
+                                    aria-current="@(currentPage == pageNumber ? "page" : null)">
+                                @pageNumber
+                            </button>
+                        }
+                    </div>
+                    <button class="pagination-control"
+                            @onclick="NextPage"
+                            disabled="@(currentPage == TotalPages)"
+                            aria-label="Go to next gallery page">
+                        Next
+                    </button>
+                </nav>
+            }
+        }
 
         @if (!filteredImages.Any())
         {
@@ -95,7 +150,7 @@
                     <AppIcon Name="search" />
                 </div>
                 <p class="empty-title">No items found</p>
-                <p>No images found in this category. Please try a different filter or browse <NavLink href="gallery">all collections</NavLink>.</p>
+                <p>No images match your search and category. Try a different term or browse <button class="inline-reset" @onclick="ResetGallery">all collections</button>.</p>
             </div>
         }
     </div>
@@ -103,58 +158,30 @@
 
 @code {
     private string selectedCategory = "all";
+    private string searchTerm = string.Empty;
+    private int currentPage = 1;
+    private const int PageSize = 4;
     private List<HeritageImage> images = new();
     private List<HeritageImage> filteredImages = new();
 
-    protected override void OnInitialized()
+    private string SearchTerm
     {
-        // Sample data - In production, this would come from an API or JSON file
-        images = new List<HeritageImage>
+        get => searchTerm;
+        set
         {
-            new HeritageImage 
-            { 
-                Title = "Taj Mahal", 
-                Description = "A symbol of eternal love, built by Emperor Shah Jahan",
-                Category = "architecture",
-                ImageUrl = "images/design-desk.jpeg"
-            },
-            new HeritageImage 
-            { 
-                Title = "Classical Sculpture", 
-                Description = "Ancient Indian sculptural mastery",
-                Category = "art",
-                ImageUrl = "images/design-desk.jpeg"
-            },
-            new HeritageImage 
-            { 
-                Title = "Sanskrit Manuscript", 
-                Description = "Ancient Sanskrit texts preserved through centuries",
-                Category = "manuscripts",
-                ImageUrl = "images/design-desk.jpeg"
-            },
-            new HeritageImage 
-            { 
-                Title = "Sitar", 
-                Description = "Traditional Indian stringed instrument",
-                Category = "instruments",
-                ImageUrl = "images/design-desk.jpeg"
-            },
-            new HeritageImage 
-            { 
-                Title = "Temple Ritual", 
-                Description = "Sacred ceremonies and spiritual traditions",
-                Category = "rituals",
-                ImageUrl = "images/design-desk.jpeg"
-            },
-            new HeritageImage 
-            { 
-                Title = "Varanasi Temples", 
-                Description = "Spiritual heart of Hindu pilgrimage",
-                Category = "architecture",
-                ImageUrl = "images/design-desk.jpeg"
-            }
-        };
+            searchTerm = value;
+            ApplyFilter();
+        }
+    }
 
+    private int TotalPages => Math.Max(1, (int)Math.Ceiling(filteredImages.Count / (double)PageSize));
+
+    private IEnumerable<HeritageImage> PagedImages =>
+        filteredImages.Skip((currentPage - 1) * PageSize).Take(PageSize);
+
+    protected override async Task OnInitializedAsync()
+    {
+        images = await Http.GetFromJsonAsync<List<HeritageImage>>("data/gallery.json") ?? new();
         ApplyFilter();
     }
 
@@ -166,21 +193,54 @@
 
     private void ApplyFilter()
     {
-        if (selectedCategory == "all")
+        IEnumerable<HeritageImage> query = images;
+
+        if (selectedCategory != "all")
+            query = query.Where(i => i.Category == selectedCategory);
+
+        if (!string.IsNullOrWhiteSpace(searchTerm))
         {
-            filteredImages = images;
+            var term = searchTerm.Trim();
+            query = query.Where(i =>
+                i.Title.Contains(term, StringComparison.OrdinalIgnoreCase) ||
+                i.SubTitle.Contains(term, StringComparison.OrdinalIgnoreCase) ||
+                i.Category.Contains(term, StringComparison.OrdinalIgnoreCase));
         }
-        else
-        {
-            filteredImages = images.Where(i => i.Category == selectedCategory).ToList();
-        }
+
+        filteredImages = query.ToList();
+        currentPage = 1;
     }
+
+    private void GoToPage(int page) => currentPage = Math.Clamp(page, 1, TotalPages);
+
+    private void PreviousPage() => GoToPage(currentPage - 1);
+
+    private void NextPage() => GoToPage(currentPage + 1);
+
+    private void ResetGallery()
+    {
+        selectedCategory = "all";
+        searchTerm = string.Empty;
+        ApplyFilter();
+    }
+
+    private static string GetCategoryLabel(string category) => category switch
+    {
+        "architecture" => "Architecture",
+        "art" => "Art & Sculpture",
+        "manuscripts" => "Manuscripts",
+        "instruments" => "Instruments",
+        "rituals" => "Rituals",
+        _ => category
+    };
 
     public class HeritageImage
     {
+        public int Id { get; set; }
         public string Title { get; set; } = string.Empty;
-        public string Description { get; set; } = string.Empty;
+        public string SubTitle { get; set; } = string.Empty;
         public string Category { get; set; } = string.Empty;
         public string ImageUrl { get; set; } = string.Empty;
+        public string FullImageUrl { get; set; } = string.Empty;
     }
 }
