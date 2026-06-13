@@ -8,47 +8,52 @@
         </div>
 
         <button class="navbar-toggle" @onclick="ToggleMenu" aria-label="Toggle navigation menu" aria-expanded="@isMenuOpen" title="Open navigation menu">
-            <span class="toggle-line"></span>
-            <span class="toggle-line"></span>
-            <span class="toggle-line"></span>
+            <AppIcon Name="menu" CssClass="menu-icon" />
         </button>
 
         <ul class="navbar-menu @(isMenuOpen ? "open" : "")">
             <li class="nav-item">
                 <NavLink href="" class="nav-link" @onclick="CloseMenu">
+                    <AppIcon Name="home" CssClass="nav-icon" />
                     <span class="nav-link-text">Home</span>
                 </NavLink>
             </li>
             <li class="nav-item">
                 <NavLink href="gallery" class="nav-link" @onclick="CloseMenu">
+                    <AppIcon Name="images" CssClass="nav-icon" />
                     <span class="nav-link-text">Gallery</span>
                 </NavLink>
             </li>
             <li class="nav-item">
                 <NavLink href="projects" class="nav-link" @onclick="CloseMenu">
+                    <AppIcon Name="briefcase" CssClass="nav-icon" />
                     <span class="nav-link-text">Projects</span>
                 </NavLink>
             </li>
             <li class="nav-item">
                 <NavLink href="research" class="nav-link" @onclick="CloseMenu">
+                    <AppIcon Name="flask" CssClass="nav-icon" />
                     <span class="nav-link-text">Research</span>
                 </NavLink>
             </li>
-            <li class="nav-item">
+           @*  <li class="nav-item">
                 <NavLink href="students" class="nav-link" @onclick="CloseMenu">
+                    <AppIcon Name="graduation-cap" CssClass="nav-icon" />
                     <span class="nav-link-text">Students</span>
                 </NavLink>
-            </li>
+            </li> *@
             <li class="nav-item">
                 <NavLink href="about" class="nav-link" @onclick="CloseMenu">
+                    <AppIcon Name="info" CssClass="nav-icon" />
                     <span class="nav-link-text">About</span>
                 </NavLink>
             </li>
-            <li class="nav-item">
+          @*   <li class="nav-item">
                 <NavLink href="tools/breadcrumb-generator" class="nav-link" @onclick="CloseMenu">
+                    <AppIcon Name="compass" CssClass="nav-icon" />
                     <span class="nav-link-text">Tools</span>
                 </NavLink>
-            </li>
+            </li> *@
         </ul>
     </div>
 </nav>

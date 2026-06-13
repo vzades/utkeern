@@ -33,32 +33,38 @@
                     <button class="filter-btn @(selectedCategory == "all" ? "active" : "")" 
                             @onclick="@((MouseEventArgs e) => FilterByCategory("all"))"
                             title="View all heritage items">
+                        <AppIcon Name="archive" CssClass="filter-icon" />
                         All Collections
                     </button>
                     <button class="filter-btn @(selectedCategory == "architecture" ? "active" : "")" 
                             @onclick="@((MouseEventArgs e) => FilterByCategory("architecture"))"
                             title="View architectural heritage">
-                        🏛️ Architecture
+                        <AppIcon Name="landmark" CssClass="filter-icon" />
+                        Architecture
                     </button>
                     <button class="filter-btn @(selectedCategory == "art" ? "active" : "")" 
                             @onclick="@((MouseEventArgs e) => FilterByCategory("art"))"
                             title="View art and sculpture">
-                        🎨 Art & Sculpture
+                        <AppIcon Name="palette" CssClass="filter-icon" />
+                        Art & Sculpture
                     </button>
                     <button class="filter-btn @(selectedCategory == "manuscripts" ? "active" : "")" 
                             @onclick="@((MouseEventArgs e) => FilterByCategory("manuscripts"))"
                             title="View manuscripts">
-                        📜 Manuscripts
+                        <AppIcon Name="scroll-text" CssClass="filter-icon" />
+                        Manuscripts
                     </button>
                     <button class="filter-btn @(selectedCategory == "instruments" ? "active" : "")" 
                             @onclick="@((MouseEventArgs e) => FilterByCategory("instruments"))"
                             title="View musical instruments">
-                        🎵 Instruments
+                        <AppIcon Name="music" CssClass="filter-icon" />
+                        Instruments
                     </button>
                     <button class="filter-btn @(selectedCategory == "rituals" ? "active" : "")" 
                             @onclick="@((MouseEventArgs e) => FilterByCategory("rituals"))"
                             title="View rituals and traditions">
-                        🙏 Rituals
+                        <AppIcon Name="sparkles" CssClass="filter-icon" />
+                        Rituals
                     </button>
                 </div>
             </div>
@@ -85,7 +91,9 @@
         @if (!filteredImages.Any())
         {
             <div class="empty-state">
-                <p class="empty-icon">🔍</p>
+                <div class="empty-icon icon-container">
+                    <AppIcon Name="search" />
+                </div>
                 <p class="empty-title">No items found</p>
                 <p>No images found in this category. Please try a different filter or browse <NavLink href="gallery">all collections</NavLink>.</p>
             </div>
