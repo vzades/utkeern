@@ -1,12 +1,13 @@
 <nav class="navbar">
     <div class="navbar-container container">
         <div class="navbar-brand">
-            <NavLink href="" class="nav-logo">
+            <NavLink href="" class="nav-logo" @onclick="() => CloseMenu()">
                 <span class="logo-text">Utkeern</span>
+                <span class="logo-subtitle">Heritage Archive</span>
             </NavLink>
         </div>
 
-        <button class="navbar-toggle" @onclick="ToggleMenu" aria-label="Toggle navigation menu" aria-expanded="@isMenuOpen">
+        <button class="navbar-toggle" @onclick="ToggleMenu" aria-label="Toggle navigation menu" aria-expanded="@isMenuOpen" title="Open navigation menu">
             <span class="toggle-line"></span>
             <span class="toggle-line"></span>
             <span class="toggle-line"></span>
@@ -14,25 +15,39 @@
 
         <ul class="navbar-menu @(isMenuOpen ? "open" : "")">
             <li class="nav-item">
-                <NavLink href="" class="nav-link" @onclick="CloseMenu">Home</NavLink>
+                <NavLink href="" class="nav-link" @onclick="CloseMenu">
+                    <span class="nav-link-text">Home</span>
+                </NavLink>
             </li>
             <li class="nav-item">
-                <NavLink href="gallery" class="nav-link" @onclick="CloseMenu">Gallery</NavLink>
+                <NavLink href="gallery" class="nav-link" @onclick="CloseMenu">
+                    <span class="nav-link-text">Gallery</span>
+                </NavLink>
             </li>
             <li class="nav-item">
-                <NavLink href="projects" class="nav-link" @onclick="CloseMenu">Projects</NavLink>
+                <NavLink href="projects" class="nav-link" @onclick="CloseMenu">
+                    <span class="nav-link-text">Projects</span>
+                </NavLink>
             </li>
             <li class="nav-item">
-                <NavLink href="research" class="nav-link" @onclick="CloseMenu">Research</NavLink>
+                <NavLink href="research" class="nav-link" @onclick="CloseMenu">
+                    <span class="nav-link-text">Research</span>
+                </NavLink>
             </li>
             <li class="nav-item">
-                <NavLink href="students" class="nav-link" @onclick="CloseMenu">Students</NavLink>
+                <NavLink href="students" class="nav-link" @onclick="CloseMenu">
+                    <span class="nav-link-text">Students</span>
+                </NavLink>
             </li>
             <li class="nav-item">
-                <NavLink href="about" class="nav-link" @onclick="CloseMenu">About</NavLink>
+                <NavLink href="about" class="nav-link" @onclick="CloseMenu">
+                    <span class="nav-link-text">About</span>
+                </NavLink>
             </li>
             <li class="nav-item">
-                <NavLink href="tools/breadcrumb-generator" class="nav-link" @onclick="CloseMenu">Tools</NavLink>
+                <NavLink href="tools/breadcrumb-generator" class="nav-link" @onclick="CloseMenu">
+                    <span class="nav-link-text">Tools</span>
+                </NavLink>
             </li>
         </ul>
     </div>

@@ -5,63 +5,94 @@
 <section class="hero">
     <div class="hero-content">
         <h1>Utkeern</h1>
-        
+
         <!-- Temple-inspired ornamental divider (animated heritage motif) -->
         <div class="heritage-motif"></div>
-        
+
         <p class="hero-subtitle">Preserving the Legacy of Indian Heritage</p>
         <p class="hero-description">
-            A visual archive celebrating the depth, beauty, and timelessness of Indian architecture, art, manuscripts, 
-            instruments, and rituals. Exploring knowledge, culture, and craftsmanship through images and storytelling.
+            Discover the depth, beauty, and timelessness of Indian architecture, art, manuscripts, 
+            instruments, and rituals. A visual archive celebrating knowledge, culture, and craftsmanship 
+            through immersive storytelling and scholarly exploration.
         </p>
-        
+
         <div class="hero-cta">
-            <NavLink href="gallery" class="btn btn-primary">Explore Gallery</NavLink>
-            <NavLink href="about" class="btn btn-secondary">Learn More</NavLink>
+            <NavLink href="gallery" class="btn btn-primary">✨ Explore Gallery</NavLink>
+            <NavLink href="about" class="btn btn-secondary">📖 Learn More</NavLink>
         </div>
     </div>
 </section>
 
 <section class="content alt">
     <div class="container-sm">
-        <SectionHeader Title="What You'll Find Here" />
-        
+        <SectionHeader Title="Heritage Categories" />
+
         <div class="grid-3">
             <FeatureCard 
                 Icon="🏛️" 
-                Title="Heritage Gallery" 
-                Description="Curated collection of Indian architectural marvels, sacred spaces, and cultural landmarks." />
-            
+                Title="Sacred Architecture" 
+                Description="Temples, mosques, churches, and spiritual landmarks showcasing India's architectural brilliance and spiritual traditions." />
+
+            <FeatureCard 
+                Icon="🎨" 
+                Title="Arts & Manuscripts" 
+                Description="Classical art forms, manuscripts, sculpture, and craftsmanship traditions preserved through centuries." />
+
             <FeatureCard 
                 Icon="📚" 
-                Title="Research & Articles" 
-                Description="In-depth exploration of Indian art history, philosophy, and cultural traditions." />
-            
-            <FeatureCard 
-                Icon="🎓" 
-                Title="Educational Resources" 
-                Description="Student-friendly guidelines for using heritage images in academic and creative work." />
+                Title="Cultural Knowledge" 
+                Description="Rituals, instruments, traditions, and philosophical heritage explored through visual storytelling and research." />
         </div>
     </div>
 </section>
 
 <div class="heritage-divider"></div>
 
-<section class="content">
+<!-- Featured Heritage Highlights Section -->
+<section class="content featured-highlights">
     <div class="container-sm">
-        <SectionHeader Title="Featured Collections" />
-        
-        <div class="grid-2">
-            <div>
-                <h3>Architecture</h3>
-                <p>
-                    From ancient temples to medieval forts, explore the architectural evolution of Indian civilization. 
-                    Each structure tells a story of craftsmanship, innovation, and cultural values.
-                </p>
-                <NavLink href="gallery" class="btn btn-text">View Collection →</NavLink>
+        <div class="section-intro">
+            <h2>Featured Collections</h2>
+            <p class="section-subtitle">Curated selections of India's most significant heritage and cultural treasures</p>
+        </div>
+
+        <!-- Two-column alternating layout for visual richness -->
+        <div class="featured-item">
+            <div class="featured-image">
+                <img src="images/design-desk.jpeg" alt="Indian Temple Architecture" class="featured-img" />
             </div>
-            <div class="image-wrapper">
-                <img src="images/design-desk.jpeg" alt="Architectural heritage" />
+            <div class="featured-text">
+                <h3>Sacred Architecture</h3>
+                <p class="featured-description">
+                    From ancient temple complexes to medieval fortifications, explore the architectural evolution 
+                    that shaped Indian civilization. Each structure reflects centuries of innovation, craftsmanship, 
+                    and spiritual devotion.
+                </p>
+                <ul class="featured-list">
+                    <li>Temple Architecture & Sacred Spaces</li>
+                    <li>Forts & Palaces</li>
+                    <li>Architectural Details & Ornaments</li>
+                </ul>
+                <NavLink href="gallery" class="btn btn-primary">Discover Architecture →</NavLink>
+            </div>
+        </div>
+
+        <div class="featured-item reverse">
+            <div class="featured-image">
+                <img src="images/motion-background.jpg" alt="Indian Art and Culture" class="featured-img" />
+            </div>
+            <div class="featured-text">
+                <h3>Art & Manuscripts</h3>
+                <p class="featured-description">
+                    Classical art forms, intricate manuscripts, and masterful sculptures tell stories of 
+                    India's rich cultural expression. Witness the skill and vision of artisans across generations.
+                </p>
+                <ul class="featured-list">
+                    <li>Classical Dance & Performance Arts</li>
+                    <li>Illuminated Manuscripts & Scripts</li>
+                    <li>Sculpture & Decorative Arts</li>
+                </ul>
+                <NavLink href="gallery" class="btn btn-primary">Explore Arts →</NavLink>
             </div>
         </div>
     </div>
@@ -70,7 +101,7 @@
 <section class="content alt">
     <div class="container">
         <SectionHeader Title="Quick Access" />
-        
+
         <div class="grid-4">
             <QuickAccessCard Title="Gallery" Icon="🖼️" Link="gallery" />
             <QuickAccessCard Title="Projects" Icon="💼" Link="projects" />

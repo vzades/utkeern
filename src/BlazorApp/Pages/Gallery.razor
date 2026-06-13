@@ -7,44 +7,68 @@
 <section class="gallery-hero">
     <div class="gallery-hero-content">
         <h1>Heritage Gallery</h1>
-        <p>A curated collection of Indian architectural marvels, sacred spaces, and cultural landmarks</p>
+        <p class="gallery-hero-subtitle">Explore India's Most Significant Cultural Treasures</p>
+        <p class="gallery-hero-description">
+            A carefully curated visual archive of architectural marvels, sacred spaces, artistic masterpieces, 
+            and cultural landmarks that define India's rich heritage. Each image tells a story of craftsmanship, 
+            devotion, and historical significance.
+        </p>
     </div>
 </section>
 
 <section class="content">
     <div class="container">
         <div class="gallery-header">
-            <SectionHeader Title="Browse Collection" />
-            
+            <div class="gallery-intro">
+                <SectionHeader Title="Browse Our Collections" />
+                <p class="collection-intro">Select a category to explore specific aspects of Indian heritage</p>
+            </div>
+
             <div class="filter-section">
-                <h4>Filter by Category</h4>
+                <div class="filter-labels">
+                    <h4>Filter by Category</h4>
+                    <p class="filter-help">Click a category to view related heritage items</p>
+                </div>
                 <div class="filter-buttons">
                     <button class="filter-btn @(selectedCategory == "all" ? "active" : "")" 
-                            @onclick="@((MouseEventArgs e) => FilterByCategory("all"))">
-                        All
+                            @onclick="@((MouseEventArgs e) => FilterByCategory("all"))"
+                            title="View all heritage items">
+                        All Collections
                     </button>
                     <button class="filter-btn @(selectedCategory == "architecture" ? "active" : "")" 
-                            @onclick="@((MouseEventArgs e) => FilterByCategory("architecture"))">
-                        Architecture
+                            @onclick="@((MouseEventArgs e) => FilterByCategory("architecture"))"
+                            title="View architectural heritage">
+                        🏛️ Architecture
                     </button>
                     <button class="filter-btn @(selectedCategory == "art" ? "active" : "")" 
-                            @onclick="@((MouseEventArgs e) => FilterByCategory("art"))">
-                        Art & Sculpture
+                            @onclick="@((MouseEventArgs e) => FilterByCategory("art"))"
+                            title="View art and sculpture">
+                        🎨 Art & Sculpture
                     </button>
                     <button class="filter-btn @(selectedCategory == "manuscripts" ? "active" : "")" 
-                            @onclick="@((MouseEventArgs e) => FilterByCategory("manuscripts"))">
-                        Manuscripts
+                            @onclick="@((MouseEventArgs e) => FilterByCategory("manuscripts"))"
+                            title="View manuscripts">
+                        📜 Manuscripts
                     </button>
                     <button class="filter-btn @(selectedCategory == "instruments" ? "active" : "")" 
-                            @onclick="@((MouseEventArgs e) => FilterByCategory("instruments"))">
-                        Instruments
+                            @onclick="@((MouseEventArgs e) => FilterByCategory("instruments"))"
+                            title="View musical instruments">
+                        🎵 Instruments
                     </button>
                     <button class="filter-btn @(selectedCategory == "rituals" ? "active" : "")" 
-                            @onclick="@((MouseEventArgs e) => FilterByCategory("rituals"))">
-                        Rituals
+                            @onclick="@((MouseEventArgs e) => FilterByCategory("rituals"))"
+                            title="View rituals and traditions">
+                        🙏 Rituals
                     </button>
                 </div>
             </div>
+        </div>
+
+        <div class="gallery-stats">
+            <span class="stat-item">
+                <span class="stat-number">@filteredImages.Count</span>
+                <span class="stat-label">@(filteredImages.Count == 1 ? "Item" : "Items") shown</span>
+            </span>
         </div>
 
         <div class="gallery-grid">
@@ -61,7 +85,9 @@
         @if (!filteredImages.Any())
         {
             <div class="empty-state">
-                <p>No images found in this category. Please try a different filter.</p>
+                <p class="empty-icon">🔍</p>
+                <p class="empty-title">No items found</p>
+                <p>No images found in this category. Please try a different filter or browse <NavLink href="gallery">all collections</NavLink>.</p>
             </div>
         }
     </div>

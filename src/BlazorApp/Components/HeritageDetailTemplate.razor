@@ -1,0 +1,187 @@
+@* Heritage Detail Page Template - For rich storytelling of heritage items *@
+
+<article class="heritage-detail">
+    @if (!string.IsNullOrEmpty(HeroImageUrl))
+    {
+        <section class="detail-hero">
+            <img src="@HeroImageUrl" alt="@Title" class="detail-hero-image" />
+        </section>
+    }
+
+    <section class="detail-content">
+        <div class="container-sm">
+            @if (!string.IsNullOrEmpty(Category))
+            {
+                <p class="detail-category">@Category</p>
+            }
+
+            <h1>@Title</h1>
+
+            @if (!string.IsNullOrEmpty(Subtitle))
+            {
+                <p class="detail-subtitle">@Subtitle</p>
+            }
+
+            @if (!string.IsNullOrEmpty(Introduction))
+            {
+                <section class="detail-introduction">
+                    @((MarkupString)Introduction)
+                </section>
+            }
+
+            <!-- Historical Timeline Section -->
+            @if (TimelineItems?.Any() == true)
+            {
+                <section class="detail-section timeline-section">
+                    <h2>Historical Timeline</h2>
+                    <div class="timeline">
+                        @foreach (var item in TimelineItems)
+                        {
+                            <div class="timeline-item">
+                                <div class="timeline-marker"></div>
+                                <div class="timeline-content">
+                                    <h4>@item.Year</h4>
+                                    <p>@item.Description</p>
+                                </div>
+                            </div>
+                        }
+                    </div>
+                </section>
+            }
+
+            <!-- Key Facts Section -->
+            @if (KeyFacts?.Any() == true)
+            {
+                <section class="detail-section facts-section">
+                    <h2>Key Facts</h2>
+                    <div class="facts-grid">
+                        @foreach (var fact in KeyFacts)
+                        {
+                            <div class="fact-item">
+                                <h4>@fact.Label</h4>
+                                <p>@fact.Value</p>
+                            </div>
+                        }
+                    </div>
+                </section>
+            }
+
+            <!-- Detailed Description -->
+            @if (!string.IsNullOrEmpty(DetailedDescription))
+            {
+                <section class="detail-section description-section">
+                    <h2>About This Heritage</h2>
+                    @((MarkupString)DetailedDescription)
+                </section>
+            }
+
+            <!-- Cultural Significance -->
+            @if (!string.IsNullOrEmpty(CulturalSignificance))
+            {
+                <section class="detail-section significance-section">
+                    <h2>Cultural Significance</h2>
+                    @((MarkupString)CulturalSignificance)
+                </section>
+            }
+
+            <!-- Related Images Gallery -->
+            @if (RelatedImages?.Any() == true)
+            {
+                <section class="detail-section gallery-section">
+                    <h2>Image Gallery</h2>
+                    <div class="detail-gallery-grid">
+                        @foreach (var image in RelatedImages)
+                        {
+                            <div class="detail-gallery-item">
+                                <img src="@image.Url" alt="@image.Caption" loading="lazy" />
+                                @if (!string.IsNullOrEmpty(image.Caption))
+                                {
+                                    <p class="gallery-caption">@image.Caption</p>
+                                }
+                            </div>
+                        }
+                    </div>
+                </section>
+            }
+
+            <!-- Additional Information -->
+            @if (!string.IsNullOrEmpty(AdditionalInfo))
+            {
+                <section class="detail-section info-section">
+                    @((MarkupString)AdditionalInfo)
+                </section>
+            }
+        </div>
+    </section>
+
+    @if (ShowRelatedItems)
+    {
+        <section class="content alt">
+            <div class="container-sm">
+                <h2>Related Heritage Items</h2>
+                <div class="grid-3">
+                    @ChildContent
+                </div>
+            </div>
+        </section>
+    }
+</article>
+
+@code {
+    [Parameter]
+    public string Title { get; set; } = string.Empty;
+
+    [Parameter]
+    public string Subtitle { get; set; } = string.Empty;
+
+    [Parameter]
+    public string Category { get; set; } = string.Empty;
+
+    [Parameter]
+    public string HeroImageUrl { get; set; } = string.Empty;
+
+    [Parameter]
+    public string Introduction { get; set; } = string.Empty;
+
+    [Parameter]
+    public string DetailedDescription { get; set; } = string.Empty;
+
+    [Parameter]
+    public string CulturalSignificance { get; set; } = string.Empty;
+
+    [Parameter]
+    public string AdditionalInfo { get; set; } = string.Empty;
+
+    [Parameter]
+    public bool ShowRelatedItems { get; set; } = false;
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    [Parameter]
+    public List<TimelineItem>? TimelineItems { get; set; }
+
+    [Parameter]
+    public List<KeyFact>? KeyFacts { get; set; }
+
+    [Parameter]
+    public List<GalleryImage>? RelatedImages { get; set; }
+
+    public class TimelineItem
+    {
+        public string Year { get; set; } = string.Empty;
+        public string Description { get; set; } = string.Empty;
+    }
+
+    public class KeyFact
+    {
+        public string Label { get; set; } = string.Empty;
+        public string Value { get; set; } = string.Empty;
+    }
+
+    public class GalleryImage
+    {
+        public string Url { get; set; } = string.Empty;
+        public string Caption { get; set; } = string.Empty;
+    }
+}
