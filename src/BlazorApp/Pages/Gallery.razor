@@ -22,7 +22,7 @@
         <div class="gallery-header">
             <div class="gallery-intro">
                 <SectionHeader Title="Browse Our Collections" />
-                <p class="collection-intro">Select a category to explore specific aspects of Indian heritage</p>
+                
             </div>
 
             <div class="filter-section">
@@ -66,20 +66,6 @@
                             title="View manuscripts">
                         <AppIcon Name="scroll-text" CssClass="filter-icon" />
                         Manuscripts
-                    </button>
-                    <button class="filter-btn @(selectedCategory == "instruments" ? "active" : "")" 
-                            @onclick="@((MouseEventArgs e) => FilterByCategory("instruments"))"
-                            aria-pressed="@(selectedCategory == "instruments")"
-                            title="View musical instruments">
-                        <AppIcon Name="music" CssClass="filter-icon" />
-                        Instruments
-                    </button>
-                    <button class="filter-btn @(selectedCategory == "rituals" ? "active" : "")" 
-                            @onclick="@((MouseEventArgs e) => FilterByCategory("rituals"))"
-                            aria-pressed="@(selectedCategory == "rituals")"
-                            title="View rituals and traditions">
-                        <AppIcon Name="sparkles" CssClass="filter-icon" />
-                        Rituals
                     </button>
                 </div>
             </div>
@@ -181,7 +167,7 @@
 
     protected override async Task OnInitializedAsync()
     {
-        images = await Http.GetFromJsonAsync<List<HeritageImage>>("data/gallery.json") ?? new();
+        images = await Http.GetFromJsonAsync<List<HeritageImage>>($"data/gallery.json?v={DateTimeOffset.UtcNow.ToUnixTimeSeconds()}") ?? new();
         ApplyFilter();
     }
 
