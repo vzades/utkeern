@@ -12,6 +12,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Update="wwwroot\data\gallery.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Update="wwwroot\images\komal.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

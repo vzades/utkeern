@@ -1,50 +1,19 @@
 [
   {
     "id": 1,
-    "title": "Taj Mahal",
-    "subTitle": "A symbol of eternal love, built by Emperor Shah Jahan",
-    "category": "architecture",
-    "imageUrl": "/images/design-desk.jpeg",
-    "fullImageUrl": "/images/design-desk.jpeg"
+    "title": "Indra",
+    "subTitle": "Keshava temple, Somanathapura, Karnataka, Hoysala dynasty",
+    "category": "art",
+    "imageUrl": "/images/gallery/1.jpeg",
+    "fullImageUrl": "/images/gallery/1.jpeg"
   },
   {
     "id": 2,
-    "title": "Classical Sculpture",
-    "subTitle": "Ancient Indian sculptural mastery",
+    "title": "Narsimha",
+    "subTitle": "Keshav temple, Somanathapura, Karnataka, Hoysala dynasty",
     "category": "art",
-    "imageUrl": "/images/design-desk.jpeg",
-    "fullImageUrl": "/images/design-desk.jpeg"
-  },
-  {
-    "id": 3,
-    "title": "Sanskrit Manuscript",
-    "subTitle": "Ancient Sanskrit texts preserved through centuries",
-    "category": "manuscripts",
-    "imageUrl": "/images/design-desk.jpeg",
-    "fullImageUrl": "/images/design-desk.jpeg"
-  },
-  {
-    "id": 4,
-    "title": "Sitar",
-    "subTitle": "Traditional Indian stringed instrument",
-    "category": "instruments",
-    "imageUrl": "/images/design-desk.jpeg",
-    "fullImageUrl": "/images/design-desk.jpeg"
-  },
-  {
-    "id": 5,
-    "title": "Temple Ritual",
-    "subTitle": "Sacred ceremonies and spiritual traditions",
-    "category": "rituals",
-    "imageUrl": "/images/design-desk.jpeg",
-    "fullImageUrl": "/images/design-desk.jpeg"
-  },
-  {
-    "id": 6,
-    "title": "Varanasi Temples",
-    "subTitle": "Spiritual heart of Hindu pilgrimage",
-    "category": "architecture",
-    "imageUrl": "/images/design-desk.jpeg",
-    "fullImageUrl": "/images/design-desk.jpeg"
+    "imageUrl": "/images/gallery/2.jpeg",
+    "fullImageUrl": "images/gallery/2.jpeg"
   }
+
 ]
