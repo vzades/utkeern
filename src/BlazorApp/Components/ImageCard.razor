@@ -11,7 +11,14 @@
                  decoding="async" />
             <div class="image-card-overlay">
                 <h3>@Title</h3>
-                <p>@SubTitle</p>
+                @if (HasSecondaryLine)
+                {
+                    <p class="image-card-line">@SecondaryLine</p>
+                }
+                @if (HasEraLine)
+                {
+                    <p class="image-card-line image-card-era">@EraLine</p>
+                }
             </div>
         </div>
     </a>
@@ -31,6 +38,15 @@
     public string SubTitle { get; set; } = string.Empty;
 
     [Parameter]
+    public string Location { get; set; } = string.Empty;
+
+    [Parameter]
+    public string Period { get; set; } = string.Empty;
+
+    [Parameter]
+    public string Dynasty { get; set; } = string.Empty;
+
+    [Parameter]
     public string Category { get; set; } = string.Empty;
 
     [Parameter]
@@ -41,4 +57,18 @@
 
     [Parameter]
     public bool LargeVariant { get; set; } = false;
+
+    private bool HasSecondaryLine =>
+        !string.IsNullOrWhiteSpace(SubTitle) ||
+        !string.IsNullOrWhiteSpace(Location);
+
+    private bool HasEraLine =>
+        !string.IsNullOrWhiteSpace(Period) ||
+        !string.IsNullOrWhiteSpace(Dynasty);
+
+    private string SecondaryLine =>
+        string.Join(", ", new[] { SubTitle, Location }.Where(value => !string.IsNullOrWhiteSpace(value)));
+
+    private string EraLine =>
+        string.Join(", ", new[] { Period, Dynasty }.Where(value => !string.IsNullOrWhiteSpace(value)));
 }

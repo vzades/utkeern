@@ -91,6 +91,9 @@
                     @key="image.Id"
                     Title="@image.Title" 
                     SubTitle="@image.SubTitle"
+                    Location="@image.Location"
+                    Period="@image.Period"
+                    Dynasty="@image.Dynasty"
                     Category="@GetCategoryLabel(image.Category)"
                     ImageUrl="@image.ImageUrl"
                     FullImageUrl="@image.FullImageUrl"
@@ -190,6 +193,9 @@
             query = query.Where(i =>
                 i.Title.Contains(term, StringComparison.OrdinalIgnoreCase) ||
                 i.SubTitle.Contains(term, StringComparison.OrdinalIgnoreCase) ||
+                i.Location.Contains(term, StringComparison.OrdinalIgnoreCase) ||
+                i.Period.Contains(term, StringComparison.OrdinalIgnoreCase) ||
+                i.Dynasty.Contains(term, StringComparison.OrdinalIgnoreCase) ||
                 i.Category.Contains(term, StringComparison.OrdinalIgnoreCase));
         }
 
@@ -225,6 +231,9 @@
         public int Id { get; set; }
         public string Title { get; set; } = string.Empty;
         public string SubTitle { get; set; } = string.Empty;
+        public string Location { get; set; } = string.Empty;
+        public string Period { get; set; } = string.Empty;
+        public string Dynasty { get; set; } = string.Empty;
         public string Category { get; set; } = string.Empty;
         public string ImageUrl { get; set; } = string.Empty;
         public string FullImageUrl { get; set; } = string.Empty;
