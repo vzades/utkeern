@@ -961,6 +961,18 @@ section.content.alt {
   line-height: 1.55;
 }
 
+.image-card-line {
+  max-width: 56ch;
+}
+
+.image-card-era {
+  margin-top: 0.25rem;
+  color: rgba(255, 250, 240, 0.74);
+  font-family: var(--font-sans);
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
 .image-card:hover .image-card-overlay {
   transform: none;
 }

@@ -2,18 +2,35 @@
   {
     "id": 1,
     "title": "Indra",
-    "subTitle": "Keshava temple, Somanathapura, Karnataka, Hoysala dynasty",
+    "subTitle": "Keshava temple",
     "category": "art",
+    "Location": " Somanathapura,Karnataka, India",
+    "Period": "",
+    "Dynasty": "Hoysala dynasty",
     "imageUrl": "/images/gallery/1.jpeg",
     "fullImageUrl": "/images/gallery/1.jpeg"
   },
   {
     "id": 2,
     "title": "Narsimha",
-    "subTitle": "Keshav temple, Somanathapura, Karnataka, Hoysala dynasty",
+    "subTitle": "Keshav temple",
     "category": "art",
+    "Location": " Somanathapura,Karnataka, India",
+    "Period": "",
+    "Dynasty": "Hoysala dynasty",
     "imageUrl": "/images/gallery/2.jpeg",
     "fullImageUrl": "images/gallery/2.jpeg"
+  },
+  {
+    "id": 3,
+    "title": "Badoli group of temples",
+    "subTitle": "Temple Complex",
+    "category": "Architecture",
+    "Location": " Badoli, Rajasthan , India",
+    "Period": "10th-11th century CE",
+    "Dynasty": "Pratihara dynasty",
+    "imageUrl": "/images/gallery/3.jpg",
+    "fullImageUrl": "images/gallery/3.jpg"
   }
 
 ]
