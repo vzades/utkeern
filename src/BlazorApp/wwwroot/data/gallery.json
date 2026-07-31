@@ -31,6 +31,85 @@
     "Dynasty": "Pratihara dynasty",
     "imageUrl": "/images/gallery/3.jpg",
     "fullImageUrl": "images/gallery/3.jpg"
+  },
+  {
+    "id": 4,
+    "title": "Ceiling",
+    "subTitle": "Mandapa, Badoli group of temple",
+    "category": "Architecture",
+    "Location": " Badoli, Rajasthan , India",
+    "Period": "10th-11th century CE",
+    "Dynasty": "Pratihara dynasty",
+    "imageUrl": "/images/gallery/4.jpg",
+    "fullImageUrl": "images/gallery/4.jpg"
+  },
+  {
+    "id": 5,
+    "title": "Vamana",
+    "subTitle": "Garbhagriha, Vamana Temple",
+    "category": "Architecture",
+    "Location": " Badoli, Rajasthan , India",
+    "Period": "10th-11th century CE",
+    "Dynasty": "Pratihara dynasty",
+    "imageUrl": "/images/gallery/5.jpg",
+    "fullImageUrl": "images/gallery/5.jpg"
+  },
+  {
+    "id": 6,
+    "title": "broken doorframe showing Worship of Shivalinga",
+    "subTitle": " temples complex",
+    "category": "Architecture",
+    "Location": " Badoli, Rajasthan , India",
+    "Period": "10th-11th century CE",
+    "Dynasty": "Pratihara dynasty",
+    "imageUrl": "/images/gallery/6.jpg",
+    "fullImageUrl": "images/gallery/6.jpg"
+  },
+  {
+    "id": 7,
+    "title": "Inscriptions ",
+    "subTitle": " Ghateshwar temple floor",
+    "category": "Architecture",
+    "Location": " Badoli, Rajasthan , India",
+    "Period": "10th-11th century CE",
+    "Dynasty": "Pratihara dynasty",
+    "imageUrl": "/images/gallery/7.jpg",
+    "fullImageUrl": "images/gallery/7.jpg"
+  },
+
+  {
+    "id": 8,
+    "title": "Inscriptions ",
+    "subTitle": " Ghateshwar temple floor",
+    "category": "Architecture",
+    "Location": " Badoli, Rajasthan , India",
+    "Period": "10th-11th century CE",
+    "Dynasty": "Pratihara dynasty",
+    "imageUrl": "/images/gallery/8.jpg",
+    "fullImageUrl": "images/gallery/8.jpg"
+  },
+
+  {
+    "id": 9,
+    "title": "Inscriptions ",
+    "subTitle": " Badoli group of temples",
+    "category": "Architecture",
+    "Location": " Badoli, Rajasthan , India",
+    "Period": "10th-11th century CE",
+    "Dynasty": "Pratihara dynasty",
+    "imageUrl": "/images/gallery/9.jpg",
+    "fullImageUrl": "images/gallery/9.jpg"
+  },
+  {
+    "id": 10,
+    "title": "Inscriptions ",
+    "subTitle": " Badoli group of temples",
+    "category": "Architecture",
+    "Location": " Badoli, Rajasthan , India",
+    "Period": "10th-11th century CE",
+    "Dynasty": "Pratihara dynasty",
+    "imageUrl": "/images/gallery/10.jpg",
+    "fullImageUrl": "images/gallery/10.jpg"
   }
 
 ]
